@@ -1,5 +1,3 @@
-// import {App} from "./app";
-// import {MetadataImportService} from "./services/MetadataImport/MetadataImportService";
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 
@@ -9,17 +7,17 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 import typeormConfig from "./config/TypeormConfig";
-
-// const app = new App();
-// app.listen();
+import {MetadataImportService} from "./services/MetadataImport/MetadataImportService";
 
 createConnection(
     typeormConfig
 )
     .then(() => {
-        console.log('aok');
     })
     .catch((error) => console.log(error));
 
-// const importService = new MetadataImportService();
-// importService.importFromFile()
+console.time('import');
+
+const importService = new MetadataImportService();
+importService.importFromFile()
+    .then(() => console.timeEnd('import'));

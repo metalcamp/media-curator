@@ -2,6 +2,8 @@ import {MediaCsvImportRow} from './dto/CsvImport';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as csv from '@fast-csv/parse';
+import {MediaFileRepository} from "../../repository/MediaFileRepository";
+import {MediaFileEntity} from "../../entities/MediaFileEntity";
 
 interface MetadataImportStrategy {
     import(filename: string): Promise<Array<MediaCsvImportRow>>;
@@ -28,7 +30,6 @@ class CSVFileImportStrategy implements MetadataImportStrategy {
                     results.push(row);
                 })
                 .on('end', () => {
-                    console.log(results);
                     resolve(results);
                 });
         });
@@ -45,7 +46,10 @@ export class MetadataImportService {
     // TODO remove default filename
     async importFromFile(
         filename = 'import.csv',
-    ): Promise<Array<MediaCsvImportRow>> {
-        return this.strategy.import(filename);
+    ): Promise<void> {
+        const meta = await this.strategy.import(filename) as unknown as MediaFileEntity[];
+
+        const repo = new MediaFileRepository();
+        await repo.store(meta);
     }
 }

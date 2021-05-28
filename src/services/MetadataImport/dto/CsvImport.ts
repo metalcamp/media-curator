@@ -1,4 +1,5 @@
-// eslint-disable-next-line node/no-unsupported-features/es-syntax
+import {TimestampedEntity} from "../../../interfaces/TimestampedEntity";
+
 export interface MediaCsvImportRow {
     filepath: string;
     title: string;
@@ -11,7 +12,8 @@ export interface MediaCsvImportRow {
     mood?: string;
 }
 
-// eslint-disable-next-line node/no-unsupported-features/es-syntax
-export interface MediaEntity extends MediaCsvImportRow {
+export interface MediaEntity extends MediaCsvImportRow, TimestampedEntity {
     id: number;
+    importedAt?: Date;
+    syncedAt?: Date;
 }

@@ -5,7 +5,7 @@ type TypeormConfig = ConnectionOptions;
 const config: TypeormConfig = {
     type: 'postgres',
     logging: process.env.TYPEORM_LOGGING === 'true',
-    entities: [process.env.TYPEORM_ENTITIES || ''],
+    entities: ['dist/entities/*.js'],
     host: process.env.TYPEORM_HOST,
     port: 5432,
     username: process.env.TYPEORM_USERNAME,
