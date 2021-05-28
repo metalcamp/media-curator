@@ -26,7 +26,7 @@ module.exports = {
         // Optional.
         'eslint-comments/no-unused-disable': 'error',
         'node/exports-style': ['error', 'module.exports'],
-        'node/file-extension-in-import': ['error', 'always'],
+        // 'node/file-extension-in-import': ['error', 'always'],
         'node/prefer-global/buffer': ['error', 'always'],
         'node/prefer-global/console': ['error', 'always'],
         'node/prefer-global/process': ['error', 'always'],

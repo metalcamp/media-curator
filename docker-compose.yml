@@ -3,7 +3,6 @@ version: '3.7'
 services:
     postgres:
         image: postgres:13
-        container_name: postgres
         environment:
             POSTGRES_PASSWORD: "secret"
             POSTGRES_DB: "api"
@@ -16,14 +15,12 @@ services:
         restart: unless-stopped
     redis:
         image: redis:6
-        container_name: redis
         ports:
             - "6379:6379"
         networks:
             - internal
         restart: unless-stopped
     app:
-        container_name: app
         restart: always
         build: .
         env_file:
