@@ -38,7 +38,7 @@ module.exports = {
     parserOptions: {
         "parserOptions": {
             // Only ESLint 6.2.0 and later support ES2020.
-            "ecmaVersion": 2017
+            "ecmaVersion": 2020
         },
     }
 };

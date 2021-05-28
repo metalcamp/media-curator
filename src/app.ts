@@ -2,12 +2,16 @@ import express = require("express");
 import router from "./routes/router";
 import {Express} from "express";
 import {createConnection} from "typeorm";
-import * as dotenv from "dotenv";
 import {errorHandler} from "./middlewares/ErrorHandler";
 import "reflect-metadata";
 import logger from "./logger";
+import appConfig from "./config/AppConfig";
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+    const dotenv = require('dotenv');
+    dotenv.config();
+}
+
 
 export class App {
     public app: Express;
@@ -16,8 +20,8 @@ export class App {
 
     constructor() {
         // @ts-ignore
-        this.port = parseInt(process.env.PORT, 10) || 3000;
-        this.env = process.env.APP_ENV ?? 'prod';
+        this.port = appConfig.port;
+        this.env = appConfig.env;
         this.app = express();
         this.connectToDatabase();
         this.initializeMiddlewares();

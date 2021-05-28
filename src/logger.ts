@@ -1,6 +1,7 @@
 import winston from "winston";
 import fs from "fs";
 import path from "path";
+import appConfig from "./config/AppConfig";
 
 const logDir = 'logs';
 
@@ -24,7 +25,7 @@ const logger = winston.createLogger({
 // If we're not in production then log to the `console` with the format:
 // `${info.level}: ${info.message} JSON.stringify({ ...rest }) `
 //
-if (process.env.APP_ENV !== 'production') {
+if (appConfig.env !== 'production') {
     logger.add(new winston.transports.Console({
         format: winston.format.simple()
     }));
