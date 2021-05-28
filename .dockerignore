@@ -1,0 +1,14 @@
+.env
+.idea/
+.vscode/
+/coverage
+/dist
+/node_modules
+build/
+coverage/
+dist/
+logs/*
+node_modules/
+temp/
+tmp/
+yarn-error.log
